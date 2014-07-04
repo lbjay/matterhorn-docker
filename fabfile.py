@@ -68,7 +68,7 @@ def rmi():
         
 @task
 @with_settings(warn_only=True)
-def run(ep='', detatched=False, **kwargs):
+def run(ep='', detach=False, **kwargs):
     """
     execute the container
     
@@ -78,8 +78,9 @@ def run(ep='', detatched=False, **kwargs):
     """ 
     ports = "-p 8080:8080"
     evars = len(kwargs) and ' '.join(["-e %s=%s" % (x[0],x[1]) for x in kwargs.items()]) or '' 
-    env.docker("run -t -i --name %s %s %s %s %s" \
-               % (env.container_name, evars, ports, env.image_name, ep))
+    detach = detach and "-d" or ""
+    env.docker("run %s -t -i --name %s %s %s %s %s" \
+               % (detach, env.container_name, evars, ports, env.image_name, ep))
     
 @task
 @with_settings(warn_only=True)
