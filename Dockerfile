@@ -1,7 +1,6 @@
 
 #
-# logstash-forwarder Dockerfile
-# inspiration: https://github.com/denibertovic/logstash-forwarder-dockerfile
+# matterhorn Dockerfile
 #
  
 # Pull base image.
